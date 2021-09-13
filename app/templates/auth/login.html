@@ -1,0 +1,50 @@
+{% import "bootstrap/utils.html" as utils %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% from "_helpers/_formhelpers.html" import render_field %}
+{% extends 'base.html'%}
+
+{% block main_body %}
+  <div class="sidenav">
+    <div class="login-main-text">
+      <h2>WelCome to G1G BI-Panel<br> Login Page</h2>
+      <p>Login from here to access.</p>
+    </div>
+  </div>
+  <div class="main">
+    <div class="col-md-6 col-sm-12">
+      <div class="login-form">
+        <form action="" method="post" role="form">
+          {{ form.csrf }}
+          {{ form.hidden_tag() }}
+          <div class="form-group">
+              <label>Email</label>
+              {{ form.email(class_="form-control") }}
+          </div>
+          <div class="form-group">
+              <label>Password</label>
+              {{ form.password(class_="form-control") }}
+          </div>
+          <button type="submit" class="btn btn-black">Login</button>
+          <a class="btn btn-secondary" href="{{ url_for('auth.register') }}" role="button">Register</a>
+        </form>
+      </div>
+    </div>
+    <br>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+    {% for message in messages %}
+      {% if "Error" not in message[1]: %}
+          <div class="alert alert-info">
+          <strong>Success! </strong> {{ message[1] }}
+          </div>
+      {% endif %}
+      {% if "Error" in message[1]: %}
+          <div class="alert alert-danger">
+          <strong>Error: </strong> {{ message[1] }}
+          </div>
+      {% endif %}
+    {% endfor %}
+      {% endif %}
+    {% endwith %}
+  </div>
+{% endblock %}

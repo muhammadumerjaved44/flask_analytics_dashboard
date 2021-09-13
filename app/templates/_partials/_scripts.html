@@ -1,0 +1,86 @@
+<script src="{{ url_for('static', filename='node_modules/jquery/dist/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='node_modules/jquery-ui-dist/jquery-ui.min.js') }}"></script>
+
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+    $.widget.bridge('uibutton', $.ui.button);
+</script>
+<!-- <script src="{{ url_for('static', filename='bootstrap/dist/js/bootstrap.min.js') }}"></script> -->
+<script src="{{ url_for('static', filename='node_modules/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+
+<script src="{{ url_for('static', filename='js/admin-lte/app.min.js') }}"></script>
+
+<!-- Bootstrap 4 -->
+<!-- <script src="{{ url_for('static', filename='plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script> -->
+<script src="{{ url_for('static', filename='node_modules/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+
+<!-- ChartJS -->
+<script src="{{ url_for('static', filename='node_modules/chart.js/dist/Chart.min.js') }}"></script>
+
+<!-- Sparkline -->
+<!-- <script src="{{ url_for('static', filename='plugins/sparklines/sparkline.js') }}"></script> -->
+<script src="{{ url_for('static', filename='node_modules/sparkline.js/dist/sparkline.min.js') }}"></script>
+
+<!-- JQVMap -->
+<script src="{{ url_for('static', filename='node_modules/jqvmap/dist/jquery.vmap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='node_modules/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
+<!-- jQuery Knob Chart -->
+<script src="{{ url_for('static', filename='node_modules/jquery-knob/dist/jquery.knob.min.js') }}"></script>
+<!-- daterangepicker -->
+<script src="{{ url_for('static', filename='node_modules/moment/min/moment.min.js') }}"></script>
+<!-- <script src="{{ url_for('static', filename='node_modules/daterangepicker/daterangepicker.js') }}"></script> -->
+
+<script src="{{ url_for('static', filename='node_modules/knockout/build/output/knockout-latest.js') }}"></script>
+<script src="{{ url_for('static', filename='node_modules/knockout-daterangepicker/dist/daterangepicker.min.js') }}"></script>
+
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="{{ url_for('static', filename='node_modules/tempusdominus-bootstrap-4/build/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+<!-- Summernote -->
+<script src="{{ url_for('static', filename='node_modules/summernote/dist/summernote-bs4.min.js') }}"></script>
+<!-- overlayScrollbars -->
+<script src="{{ url_for('static', filename='node_modules/overlayscrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+<!-- AdminLTE App -->
+<script src="{{ url_for('static', filename='js/admin-lte/adminlte.js') }}"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="{{ url_for('static', filename='js/admin-lte/dashboard.js') }}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{ url_for('static', filename='js/admin-lte/demo.js') }}"></script>
+
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> -->
+<script src="{{ url_for('static', filename='node_modules/apexcharts/dist/apexcharts.min.js') }}"></script>
+
+
+<script src="{{ url_for('static', filename='node_modules/bootstrap-slider/dist/bootstrap-slider.min.js') }}"></script>
+
+<!-- <script src=”https://cdn.plot.ly/plotly-latest.min.js”></script> -->
+<!-- <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script> -->
+<script src="{{ url_for('static', filename='node_modules/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+
+<script src="{{ url_for('static', filename='node_modules/X-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js') }}"></script>
+
+<!-- high charts -->
+<script src="https://code.highcharts.com/maps/highmaps.js"></script>
+<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/mapdata/custom/world-continents.js"></script>
+<script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
+<script src="https://code.highcharts.com/highcharts-3d.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+
+
+
+
+<!-- app js declaired here  -->
+<!-- static/app/home/index.js -->
+<script src="{{ url_for('static', filename='js/app/home/index.js') }}"></script>
+<script src="{{ url_for('static', filename='js/app/users/index.js') }}"></script>
+<script src="{{ url_for('static', filename='js/app/business/index.js') }}"></script>
+
+{% block chartJS %}
+
+{% endblock %}
+

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>{{ title }} | G1G BI Portal</title>
+  {% block meta %}
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% endblock %}
+  {% include "_partials/_style.html" ignore missing %}
+</head>
+
+<body class="sidebar-mini layout-fixed layout-navbar-fixed">
+  {% block body %}
+  <div class="wrapper">
+    {% block main_body %}
+    {% block nav_header %}
+    {% include '_partials/_main_header.html' %}
+    {% endblock %}
+    {% block nav_sidebar %}
+    {% include '_partials/_main_sidebar.html' %}
+    {% endblock %}
+    {% block main_content %}
+
+    {% endblock %}
+    {% endblock %}
+  </div>
+  {% endblock %}
+
+  {% block javascript %}
+  {% include '_partials/_scripts.html' %}
+  {% endblock %}
+</body>
+
+</html>

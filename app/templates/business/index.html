@@ -1,0 +1,228 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block main_content %}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0 text-dark">{{title}}</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="{{ url_for('home.homepage') }}">Home</a></li>
+            <li class="breadcrumb-item active">{{title}}</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <!-- Small boxes (Stat box) -->
+      <div class="row">
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-info">
+            <div class="inner">
+              <h3>{{ "{:,.2f}".format(salesByValue) }}<sup style="font-size: 20px">$</sup></h3>
+              <p>Total Earned Premium</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-bag"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-success">
+            <div class="inner">
+              <h3>{{"{:,.2f}".format(profit)}}<sup style="font-size: 20px">$</sup></h3>
+              <p>Total Earned Commission</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-warning">
+            <div class="inner">
+              <h3>44</h3>
+              <p>User Registrations</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-danger">
+            <div class="inner">
+              <h3>65</h3>
+              <p>Unique Visitors</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+      <!-- /.row -->
+      <div class="row">
+        <!-- Left col -->
+        <section class="col-lg-7 connectedSortable">
+          <!-- Custom tabs (Charts with tabs)-->
+          <div class="card">
+            <div class="card-header d-flex p-0">
+              <h3 class="card-title p-3">
+                <i class="fas fa-globe-americas mr-1"></i>
+                World Map
+              </h3>
+              <ul class="nav nav-pills ml-auto p-2">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#chartGeoSalesCurrYear" data-toggle="tab">Geo graphical Sales 2019</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#chartGeoSalesPreYear" data-toggle="tab">Geo graphical Sales 2018</a>
+                </li>
+              </ul>
+            </div><!-- /.card-header -->
+            <div class="card-body">
+              <div class="tab-content p-0">
+                <!-- Morris chart - Sales -->
+                <div class="chart tab-pane active" id="chartGeoSalesCurrYear" style="position: relative;">
+                  <!-- <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas> -->
+                  <div id="geoLocCurrentCost" data-geoLocCurrentCost='{{ geoLocCurrentCost | safe }}'></div>
+                </div>
+                <div class="chart tab-pane" id="chartGeoSalesPreYear" style="position: relative;">
+                  <!-- <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas> -->
+                  <div id="geoLocPreviousCost" data-geoLocPreviousCost='{{ geoLocPreviousCost | safe }}'></div>
+                </div>
+              </div>
+            </div><!-- /.card-body -->
+          </div>
+
+          <div class="card">
+            <div class="card-header d-flex p-0">
+              <h3 class="card-title p-3">
+                <i class="fas fa-chart-bar mr-1"></i>
+                New and Returning Customers 2018-2019
+              </h3>
+              <ul class="nav nav-pills ml-auto p-2">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#chartSalesNewAndRepeat" data-toggle="tab">New and Returning Customers </a>
+                </li>
+              </ul>
+            </div>
+            <div class="card-body">
+              <div class="tab-content p-0">
+                <div class="chart tab-pane active" id="chartSalesNewAndRepeat" style="position: relative;">
+                  <div id="newAndRepeatSalesCount" data-newCustomerCountPreviousYear="{{ newCustomerCountPreviousYear }}" data-repeatCustomerCountPreviousYear="{{ repeatCustomerCountPreviousYear }}"
+                   data-newCustomerCountCurrentYear="{{ newCustomerCountCurrentYear }}" data-repeatCustomerCountCurrentYear="{{ repeatCustomerCountCurrentYear }}"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- /.Left col -->
+        <!-- right col (We are only adding the ID to make the widgets sortable)-->
+        <section class="col-lg-5 connectedSortable">
+
+          <!-- Map card -->
+          <div class="card">
+            <div class="card-header d-flex p-0">
+              <h3 class="card-title p-3">
+                <i class="fas fa-chart-line mr-1"></i>
+                Sales by Underwriters 2018-2019
+              </h3>
+              <ul class="nav nav-pills ml-auto p-2">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#chartSalesByUnderwriter" data-toggle="tab">Underwriters Sales</a>
+                </li>
+              </ul>
+            </div><!-- /.card-header -->
+            <div class="card-body">
+              <div class="tab-content p-0">
+                <!-- Morris chart - Sales -->
+                <div class="chart tab-pane active" id="chartSalesByUnderwriter" style="position: relative;">
+                  <div id="getSalesByUnderWriterLastYear" data-listOfUW='{{ listOfUW | safe }}'
+                    data-salesByPreviousYear='{{ salesByPreviousYear | safe }}'
+                    data-salesByCurrentYear='{{ salesByCurrentYear | safe }}'></div>
+                </div>
+              </div>
+            </div><!-- /.card-body -->
+          </div>
+
+          <!-- sales by HCC -->
+          <div class="card">
+            <div class="card-header d-flex p-0">
+              <h3 class="card-title p-3">
+                <i class="fas fa-chart-line mr-1"></i>
+                Sales by HCC 2018-2019
+              </h3>
+              <ul class="nav nav-pills ml-auto p-2">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#chartSalesByHcc" data-toggle="tab">HCC Sales</a>
+                </li>
+              </ul>
+            </div><!-- /.card-header -->
+            <div class="card-body">
+              <div class="tab-content p-0">
+                <!-- Morris chart - Sales -->
+                <div class="chart tab-pane active" id="chartSalesByHcc" style="position: relative;">
+                  <div id="SalesByHCC" data-hccProductList='{{ hccProductList | safe }}'
+                    data-hccSalesPreviousYear='{{ hccSalesPreviousYear | safe }}'
+                    data-hccSalesCurrentYear='{{ hccSalesCurrentYear | safe }}'></div>
+                </div>
+              </div>
+            </div><!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+
+          <div class="card">
+            <div class="card-header d-flex p-0">
+              <h3 class="card-title p-3">
+                <i class="fas fa-chart-bar mr-1"></i>
+                Sales by Year 2018-2019
+              </h3>
+              <ul class="nav nav-pills ml-auto p-2">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#chartSalesByYear" data-toggle="tab">Sales Comparison</a>
+                </li>
+              </ul>
+            </div>
+            <div class="card-body">
+              <div class="tab-content p-0">
+                <div class="chart tab-pane active" id="chartSalesByYear" style="position: relative;">
+                  <div id="salesByYear" data-previousYearSales="{{ previousYearSales }}"
+                    data-currentYearSales="{{ currentYearSales}}"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </section>
+        <!-- right col -->
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+
+{% endblock %}

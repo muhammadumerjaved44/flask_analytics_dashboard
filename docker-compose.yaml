@@ -1,0 +1,124 @@
+version: '3.0'
+
+# list of services in the Docker
+services:
+  # service for postgres database
+
+  # flask container configuration
+  portal-flask:
+    container_name: portal-flask
+    # image: alishaikh/g1g-datascience
+    build: .
+    volumes:
+      - .:/g1g_portal/
+    stdin_open: true
+    tty: true
+    ports:
+      - 7000:5000
+    entrypoint:
+      - flask
+      - run
+      - --host=0.0.0.0
+      - --port=5000
+
+    depends_on:
+      - portal-mariaDB
+      - portal-postgres
+
+    environment:
+      # flask env
+      FLASK_ENV: development
+      FLASK_DEBUG: 'True'
+      FLASK_RUN_PORT: '5000'
+
+      # credentials for maria db staging
+      DB_MARIA_HOST: ${DB_MARIA_HOST}
+      DB_MARIA_PORT: ${DB_MARIA_PORT}  # user internal port
+      DB_MARIA_USERNAME: ${DB_MARIA_USERNAME}
+      DB_MARIA_PASSWORD: ${DB_MARIA_PASSWORD}
+
+      #  credentials for postgres db
+      DB_POSTGRES_HOST: ${DB_POSTGRES_HOST}
+      DB_POSTGRES_PORT: ${DB_POSTGRES_PORT}   # user internal port
+
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+
+  # postgres container configuration
+  portal-postgres:
+    container_name: portal-postgres
+    image: postgres:10.1-alpine
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data:rw
+      # - pgdata:/var/lib/postgresql/data:rw
+    ports:
+      - 5435:5432
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      # DB_POSTGRES_HOST: ${DB_POSTGRES_HOST}
+      # DB_POSTGRES_USERNAME: ${DB_POSTGRES_USERNAME}
+      # DB_POSTGRES_PASSWORD: ${DB_POSTGRES_PASSWORD}
+
+  # portal-phpMyAdmin for cloud db container configuration
+  portal-phpMyAdminAws:
+    image: phpmyadmin/phpmyadmin
+    container_name: portal-phpMyAdminAws
+    environment:
+      PMA_HOSTS: g1g-staging-rds-mariadb.cqspand7euco.us-west-2.rds.amazonaws.com,g1g-prod-rds-mariadb.cqspand7euco.us-west-2.rds.amazonaws.com
+    #      PMA_USER: g1gdbadmin
+    #      PMA_PASSWORD:
+    ports:
+      - 8070:80
+
+  # portal-phpMyAdmin for local db container configuration
+  portal-phpMyAdmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: portal-phpMyAdmin
+    environment:
+      # PMA_ARBIRARY: 1
+      PMA_HOSTS: ${PMA_HOSTS}
+      PMA_USER: ${PMA_USER}
+      PMA_PASSWORD: ${PMA_PASSWORD}
+    ports:
+      - 8060:80
+    depends_on:
+      - portal-mariaDB
+
+  # Maria db container configuration
+  portal-mariaDB:
+    container_name: portal-mariaDB
+    image: mariadb:10.3.8
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - ./database/:/docker-entrypoint-initdb.d
+    command: mysqld --max_allowed_packet=512M --sql_mode="NO_ENGINE_SUBSTITUTION"
+    ports:
+      - 3305:3306
+
+  # service for portal-adminer like phpmyadmin
+  portal-adminer:
+    container_name: portal-adminer
+    image: adminer
+    restart: always
+    ports:
+      - 9080:8080
+    depends_on:
+      - portal-postgres
+
+  #service for cache
+  portal-redis:
+    container_name: portal-redis
+    restart: always
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+volumes:
+  postgres_data:
+  redisdata:

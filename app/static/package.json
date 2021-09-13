@@ -1,0 +1,37 @@
+{
+  "name": "g1g_portal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.11.2",
+    "X-editable": "^1.5.1",
+    "apexcharts": "^3.10.0",
+    "bootstrap": "^4.3.1",
+    "bootstrap-slider": "^10.6.2",
+    "chart.js": "^2.8.0",
+    "chartjs": "^0.3.24",
+    "datatables.net-dt": "^1.10.20",
+    "daterangepicker": "^3.0.5",
+    "ionicons-npm": "^2.0.1",
+    "jquery": "^3.4.1",
+    "jquery-knob": "^1.2.11",
+    "jquery-ui": "^1.12.1",
+    "jquery-ui-dist": "1.12.1",
+    "jqvmap": "^1.5.1",
+    "knockout": "^3.5.0",
+    "knockout-daterangepicker": "0.0.9",
+    "moment": "^2.24.0",
+    "overlayscrollbars": "^1.10.0",
+    "sparkline.js": "^0.0.2",
+    "summernote": "^0.8.12",
+    "tempusdominus-bootstrap-4": "^5.1.2",
+    "vue-chartjs": "^3.4.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
